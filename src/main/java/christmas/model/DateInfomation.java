@@ -5,6 +5,7 @@ public class DateInfomation {
     private boolean isWeekend;
     private boolean isStar;
 
+
     public DateInfomation(int day) {
         this.day = day;
     }
@@ -16,4 +17,5 @@ public class DateInfomation {
     public void checkStar(){
 
     }
+
 }
