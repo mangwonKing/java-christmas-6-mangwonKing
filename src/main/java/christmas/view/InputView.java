@@ -39,20 +39,28 @@ public class InputView {
         Map<String,Integer> menuDetail = new HashMap<>();
         while (true) {
             try {
-
                 String order = Console.readLine();
                 List<String> menus = Arrays.asList(order.split(","));
                 int size = menus.size();
                 saveOrder(menus, menuDetail);
                 checkRedundant(size,menuDetail);
+                checkTotal(menuDetail);
                 return menuDetail;
-
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
     }
-    private void checkRedundant(int size,Map<String,Integer> menuDetail){
+    private void checkTotal(Map<String,Integer> menuDetail){
+        int sum = 0;
+        for(int count : menuDetail.values()){
+            sum += count;
+        }
+        if(sum > 20){
+            throw new IllegalArgumentException();
+        }
+    }
+    private void checkRedundant(int size,Map<String,Integer> menuDetail){ //중복된 주문이 없는지 확인한다.
         if(size != menuDetail.size()){
             throw new IllegalArgumentException();
         }
@@ -70,7 +78,7 @@ public class InputView {
             menuDetail.put(menuName,countMenu);
         }
     }
-    private void checkOrder(int size){
+    private void checkOrder(int size){ // 주문형식이 정상적인지 확인한다.
         if(size != 2){
             throw new IllegalArgumentException();
         }
@@ -87,7 +95,7 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
-    private void checkCount(int count){
+    private void checkCount(int count){ //각 메뉴의 개수를 검사한다.
         if(count < 1 ){
             throw new IllegalArgumentException();
         }
