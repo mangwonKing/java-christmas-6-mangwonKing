@@ -5,9 +5,9 @@ import static christmas.system.Message.*;
 public class OutputView {
 
     public static void main(String[] args) { //출력을 확인할 임시 main 메서드
-        printWelcom();
+
     }
-    public static void printWelcom(){ //시작 메세지
+    public void printWelcom(){ //시작 메세지
         System.out.println(INTRO.getMessage());
     }
     public void printReserveMessage(int day){ //혜택 미리보기 라인 출력
