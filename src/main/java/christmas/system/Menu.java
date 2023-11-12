@@ -23,6 +23,14 @@ public enum Menu {
         this.category = category;
         this.price = price;
     }
+    public static Menu findMenu(String name){
+        for(Menu menu : Menu.values()){
+            if(menu.nameCheck(name)){
+                return menu;
+            }
+        }
+        return null;
+    }
     public boolean nameCheck(String menuName){ // 해당 메뉴가 존재하는지
         if(menuName.equals(name)){
             return true;
@@ -33,7 +41,6 @@ public enum Menu {
         return name;
     }
     public String getCategory(){
-
         return category;
     }
     public int getPrice() {

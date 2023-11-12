@@ -1,9 +1,8 @@
 package christmas.model;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import christmas.system.Menu;
+
+import java.util.*;
 
 public class OrderInfomation {
 
@@ -17,9 +16,16 @@ public class OrderInfomation {
     public void checkMenu(String name){
 
     }
-
-    public void checkCategory(){
-
+    public List<Integer> getValue(){
+        List<Integer> list = new ArrayList<>(order.values());
+        return list;
+    }
+    public Set<String> getKey(){
+        return order.keySet();
+    }
+    public String checkCategory(String name){
+        Menu menu = Menu.findMenu(name);
+        return menu.getCategory();
     }
 
     public int calculateTotal(){

@@ -11,7 +11,12 @@ public class EventPlannerController {
         int date = inputView.readDate();
         DateInfomation dateInfomation = new DateInfomation(date);
         dateInfomation.checkDay();
-        inputView.readMenu();
+        OrderInfomation orderInfomation = new OrderInfomation(inputView.readMenu());
+        for(String name : orderInfomation.getKey()){
+            System.out.println(orderInfomation.checkCategory(name));
+            System.out.println(orderInfomation.getKey());
+            System.out.println(orderInfomation.getValue());
+        }
 
     }
     public void run(){
