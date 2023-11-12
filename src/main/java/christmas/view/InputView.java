@@ -39,17 +39,24 @@ public class InputView {
         Map<String,Integer> menuDetail = new HashMap<>();
         while (true) {
             try {
+
                 String order = Console.readLine();
                 List<String> menus = Arrays.asList(order.split(","));
+                int size = menus.size();
                 saveOrder(menus, menuDetail);
+                checkRedundant(size,menuDetail);
                 return menuDetail;
 
             } catch (IllegalArgumentException e) {
-                System.out.println("에러 메세지 출력");
+                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
     }
-
+    private void checkRedundant(int size,Map<String,Integer> menuDetail){
+        if(size != menuDetail.size()){
+            throw new IllegalArgumentException();
+        }
+    }
     private void saveOrder(List<String> menus,Map<String,Integer> menuDetail){
 
         for(String getMenu : menus){
