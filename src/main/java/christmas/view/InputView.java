@@ -42,7 +42,6 @@ public class InputView {
                 String order = Console.readLine();
                 List<String> menus = Arrays.asList(order.split(","));
                 saveOrder(menus, menuDetail);
-
                 return menuDetail;
 
             } catch (IllegalArgumentException e) {
@@ -52,25 +51,32 @@ public class InputView {
     }
 
     private void saveOrder(List<String> menus,Map<String,Integer> menuDetail){
+
         for(String getMenu : menus){
             String[] menuInfo = getMenu.split("-");
+            checkOrder(menuInfo.length);
             String menuName = menuInfo[0];
             int countMenu = Integer.parseInt((menuInfo[1]));
             checkCount(countMenu);
             checkName(menuName);
+
             menuDetail.put(menuName,countMenu);
         }
     }
-    private void checkName(String name){
-        boolean flag = false;
+    private void checkOrder(int size){
+        if(size != 2){
+            throw new IllegalArgumentException();
+        }
+    }
+    private void checkName(String name){ // 메뉴의 이름을 검사한다.
+        boolean nameFlag = false;
         for(Menu menuName : Menu.values()){
             if(menuName.nameCheck(name)){
-                System.out.println(menuName.getName());
-                flag = true;
+                nameFlag = true;
                 break;
             }
         }
-        if(!flag){
+        if(!nameFlag){
             throw new IllegalArgumentException();
         }
     }
@@ -79,5 +85,6 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
 
 }

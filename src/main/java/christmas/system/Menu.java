@@ -29,11 +29,15 @@ public enum Menu {
         }
         return false;
     }
+
     public String getName(){
         return name;
     }
-    public String getCategory(){
-        return category;
+    public String getCategory(String name){
+        if(name.equals(this.name)){
+            return category;
+        }
+        return null;
     }
     public int getPrice() {
         return price;
