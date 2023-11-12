@@ -56,7 +56,7 @@ public class InputView {
             String[] menuInfo = getMenu.split("-");
             String menuName = menuInfo[0];
             int countMenu = Integer.parseInt((menuInfo[1]));
-
+            checkCount(countMenu);
             checkName(menuName);
             menuDetail.put(menuName,countMenu);
         }
@@ -71,6 +71,11 @@ public class InputView {
             }
         }
         if(!flag){
+            throw new IllegalArgumentException();
+        }
+    }
+    private void checkCount(int count){
+        if(count < 1 ){
             throw new IllegalArgumentException();
         }
     }
