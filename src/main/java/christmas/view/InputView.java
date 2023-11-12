@@ -45,13 +45,30 @@ public class InputView {
                 saveOrder(menus, menuDetail);
                 checkRedundant(size,menuDetail);
                 checkTotal(menuDetail);
+                checkCategory(menuDetail);
                 return menuDetail;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
     }
-    private void checkTotal(Map<String,Integer> menuDetail){
+    private void checkCategory(Map<String,Integer> menuDetail){ // 음료만 시킨 경우인지 확인한다.
+        boolean categoryFlag = false;
+        for(String menuName : menuDetail.keySet()){
+            for (Menu menu : Menu.values()){ //****** 메서드 분리 리팩토링 필요 ****
+                if(menu.nameCheck(menuName)){
+                    if(!menu.getCategory().equals("음료")){
+                        categoryFlag = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if(!categoryFlag){
+            throw new IllegalArgumentException();
+        }
+    }
+    private void checkTotal(Map<String,Integer> menuDetail){//총 개수를 확인한다.
         int sum = 0;
         for(int count : menuDetail.values()){
             sum += count;
