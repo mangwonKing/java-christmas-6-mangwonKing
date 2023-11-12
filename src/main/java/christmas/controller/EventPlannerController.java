@@ -17,6 +17,7 @@ public class EventPlannerController {
             System.out.println(orderInfomation.getKey());
             System.out.println(orderInfomation.getValue());
         }
+        orderInfomation.calculateTotal();
 
     }
     public void run(){

@@ -7,7 +7,7 @@ import java.util.*;
 public class OrderInfomation {
 
     private Map<String,Integer> order = new HashMap<>();
-    private int totalPrice;
+    private int totalPrice = 0;
 
 
     public OrderInfomation(Map<String,Integer> order){
@@ -28,8 +28,11 @@ public class OrderInfomation {
         return menu.getCategory();
     }
 
-    public int calculateTotal(){
-
-        return -1;
+    public void calculateTotal(){
+        for(String menuName : order.keySet()){
+            Menu menu = Menu.findMenu(menuName);
+            totalPrice += (menu.getPrice() * order.get(menuName));
+        }
+        System.out.println(totalPrice);
     }
 }
