@@ -24,9 +24,7 @@ public class EventPlannerController {
         outputView.printDiscountList(discount,orderInfomation,dateInfomation);
         outputView.printTotalDiscount(discount);
         outputView.printAffterPrice(discount,orderInfomation);
-
-
-
+        outputView.printBadge(discount.checkBadge());
 
     }
 }

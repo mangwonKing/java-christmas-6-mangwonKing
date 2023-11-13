@@ -58,15 +58,26 @@ public class OutputView {
     public void printTotalDiscount(Discount discount){ // 총 혜택금액 출력
         System.out.println(OUT_DISCOUNT_PRICE.getMessage());
         int benefit =discount.totalDiscount();
-        System.out.println("-"+formatter.format(benefit)+"원");
+        if(benefit > 0){
+            System.out.println("-"+formatter.format(benefit)+"원");
+            return;
+        }
+        System.out.println("없음");
+
     }
 
     public void printAffterPrice(Discount discount,OrderInfomation orderInfomation){
         System.out.println(OUT_AFFTER_DISCOUNT.getMessage());
         int result = discount.resultPrice(orderInfomation);
-        System.out.println(formatter.format(result)+"원");
+        if(result > 0){
+            System.out.println(formatter.format(result)+"원");
+            return;
+        }
+        System.out.println("없음");
+
     }
     public void printBadge(String badge){
-        //이벤트 뱃지 문구 출력 후 값 출력
+        System.out.println(OUT_BADGE.getMessage());
+        System.out.println(badge);
     }
 }

@@ -8,7 +8,7 @@ public class Discount {
     private final int CHRISTMAS = 25;
     private final int initDiscount = 1000;
     private boolean hasPresent = false;
-    private String badge;
+    private String badge = "없음";
     private int discountPrice = 0; // 할인금액
     private int totalBenefit = 0;
     DecimalFormat formatter = new DecimalFormat("###,###");
@@ -64,7 +64,7 @@ public class Discount {
         }
         return hasPresent;
     }
-    public void checkBadge(){
+    public String checkBadge(){
         //총 혜택 금액으로 뱃지 판별해서 저장
         if(totalBenefit >= 5000 && totalBenefit < 10000){
             badge = "별";
@@ -75,6 +75,7 @@ public class Discount {
         if(totalBenefit >= 20000){
             badge = "산타";
         }
+        return badge;
     }
     public int totalDiscount(){
         //최종 혜택금액을 계산하는 기능 혜택금액은 디스카운트 + 증정품(이미 토탈 배네핏에 추가되어 있음)
