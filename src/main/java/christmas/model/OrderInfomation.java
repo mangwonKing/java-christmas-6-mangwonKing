@@ -13,7 +13,11 @@ public class OrderInfomation {
         this.order = order;
     }
 
-
+    public void printOrder(){
+        for (String menu : order.keySet()){
+            System.out.println(menu +" "+ order.get(menu) + "개");
+        }
+    }
     public List<Integer> getValue(){
         List<Integer> list = new ArrayList<>(order.values());
         return list;

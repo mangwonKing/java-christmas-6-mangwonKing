@@ -1,19 +1,19 @@
 package christmas.view;
 
+import christmas.model.OrderInfomation;
+
 import static christmas.system.Message.*;
 
 public class OutputView {
-
-    public static void main(String[] args) { //출력을 확인할 임시 main 메서드
-        OutputView outputView = new OutputView();
-    }
     public void printWelcom(){ //시작 메세지
         System.out.println(INTRO.getMessage());
     }
     public void printReserveMessage(int day){ //혜택 미리보기 라인 출력
-
+        System.out.println("12월 "+day + "일에 우테코 식당에서 받을 이벤트 혜택 미리보기!");
     }
-    public void printOrder(){ // 주문 메뉴 출력
+    public void printOrder(OrderInfomation orderInfomation){ // 주문 메뉴 출력
+        System.out.println(OUT_MENU);
+        orderInfomation.printOrder();
 
     }
 
