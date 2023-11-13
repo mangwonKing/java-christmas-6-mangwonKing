@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.model.DateInfomation;
+import christmas.model.Discount;
 import christmas.model.OrderInfomation;
 import christmas.view.InputView;
 
@@ -18,6 +19,8 @@ public class EventPlannerController {
             System.out.println(orderInfomation.getValue());
         }
         orderInfomation.calculateTotal();
+        Discount discount = new Discount();
+        discount.checkMinOrderPrice(orderInfomation.getTotalPrice());
 
     }
     public void run(){

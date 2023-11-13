@@ -35,4 +35,7 @@ public class OrderInfomation {
         }
         System.out.println(totalPrice);
     }
+    public int getTotalPrice(){
+        return totalPrice;
+    }
 }

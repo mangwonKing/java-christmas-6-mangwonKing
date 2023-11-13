@@ -6,6 +6,8 @@ public class Discount {
     private String badge;
     private int discountPrice; // 할인금액
 
+    private final int MINUMUM_ORDER_PRICE = 10000;
+
     public void eventCheck(){ // 이건 outputview 에 더 어울린다.
         //최소 주문금액 만족하는지
 
@@ -20,8 +22,10 @@ public class Discount {
         //체크해서 총 혜택을 더해준 뒤 discountPrice에 저장
     }
     public boolean checkMinOrderPrice(int total){ //최소주문금액 만족하는지
-
-        return true;
+        if(total >= MINUMUM_ORDER_PRICE){
+            return true;
+        }
+        return false;
     }
 
     public int calculateDayDiscount(int day){ //날짜별로 d데이 할인이 얼마나 되는지
