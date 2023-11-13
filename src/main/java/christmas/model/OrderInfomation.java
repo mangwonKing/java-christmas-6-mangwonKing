@@ -5,7 +5,7 @@ import christmas.system.Menu;
 import java.util.*;
 
 public class OrderInfomation {
-
+    private final int MINIMUM_ORDER_PRICE = 10000;
     private Map<String,Integer> order = new HashMap<>();
     private int totalPrice = 0;
 
@@ -45,6 +45,13 @@ public class OrderInfomation {
             totalPrice += (menu.getPrice() * order.get(menuName));
         }
         return totalPrice;
+    }
+
+    public boolean checkMinimunPrice(){
+        if(MINIMUM_ORDER_PRICE > totalPrice){
+            return false;
+        }
+        return true;
     }
     public int getTotalPrice(){
         return totalPrice;

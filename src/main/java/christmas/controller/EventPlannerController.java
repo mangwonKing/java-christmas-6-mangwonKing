@@ -8,20 +8,23 @@ import christmas.view.OutputView;
 
 public class EventPlannerController {
     public void run(){
+        OutputView outputView = new OutputView();
         InputView inputView = new InputView();
+        Discount discount = new Discount();
+        outputView.printWelcom();
         int date = inputView.readDate();
         DateInfomation dateInfomation = new DateInfomation(date);
         dateInfomation.checkDay();
         OrderInfomation orderInfomation = new OrderInfomation(inputView.readMenu());
-        OutputView outputView = new OutputView();
+
         outputView.printOrder(orderInfomation);
         outputView.printBeforePrice(orderInfomation.calculateTotal());
+        outputView.printHasPresent(discount.checkPresent(orderInfomation.getTotalPrice()));
 
-        Discount discount = new Discount();
-        discount.checkMinOrderPrice(orderInfomation.getTotalPrice());
-        System.out.println("할인받을 금액은");
-        System.out.println(discount.calculateDayDiscount(dateInfomation.getDay()));
-        discount.checkWeekendDay(dateInfomation.getDay(),orderInfomation);
+        outputView.printDiscountList(discount,orderInfomation,dateInfomation);
+
+
+
 
     }
 }

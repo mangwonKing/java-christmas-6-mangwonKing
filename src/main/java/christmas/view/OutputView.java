@@ -1,5 +1,7 @@
 package christmas.view;
 
+import christmas.model.DateInfomation;
+import christmas.model.Discount;
 import christmas.model.OrderInfomation;
 
 import java.text.DecimalFormat;
@@ -28,10 +30,28 @@ public class OutputView {
 
     public void printHasPresent(boolean hasPresent){
         //증정샴페인 있는지 문구출력 후 출력 없으면 없다.
+        System.out.println(OUT_PRESENT.getMessage());
+        if(!hasPresent){
+            System.out.println("없음");
+            return;
+        }
+        System.out.println("샴페인 1개");
+
     }
 
-    public void printDiscountList(){ // list 이름 고칠것 , 혜택내역 출력
-
+    public void printDiscountList(Discount discount, OrderInfomation orderInfomation, DateInfomation dateInfomation){ // list 이름 고칠것 , 혜택내역 출력
+        int benefitPrice;
+        System.out.println(OUT_BENEFIT.getMessage());
+        if(!discount.checkMinOrderPrice(orderInfomation.getTotalPrice())){
+            System.out.println("없음");
+            return;
+        }
+        discount.calculateDayDiscount(dateInfomation);
+        discount.checkWeekendDay(dateInfomation,orderInfomation);
+        discount.checkSpecialDay(dateInfomation);
+        if(discount.getHasPresent()){
+            System.out.println("증정 이벤트: -25,000원");
+        }
     }
 
     public void printTotalDiscount(int discount){ // 총 혜택금액 출력
