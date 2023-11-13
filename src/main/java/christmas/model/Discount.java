@@ -8,7 +8,7 @@ public class Discount {
     private boolean hasPresent = false;
     private String badge;
     private int discountPrice = 0; // 할인금액
-
+    private int totalBenefit = 0;
 
 
     public void eventCheck(){ // 이건 outputview 에 더 어울린다.
@@ -41,6 +41,7 @@ public class Discount {
     }
     public boolean checkMinOrderPrice(int total){ //최소주문금액 만족하는지
         if(total >= MINIMUM_ORDER_PRICE){
+            totalBenefit += 25000;
             return true;
         }
         return false;
@@ -61,13 +62,24 @@ public class Discount {
         return false;
     }
     public void checkBadge(){
-        //총 할인 금액으로 뱃지 판별해서 저장
+        //총 혜택 금액으로 뱃지 판별해서 저장
+        if(totalBenefit >= 5000 && totalBenefit < 10000){
+            badge = "별";
+        }
+        if(totalBenefit >= 10000 && totalBenefit < 20000){
+            badge = "트리";
+        }
+        if(totalBenefit >= 20000){
+            badge = "산타";
+        }
     }
     public void totalDiscount(){
-        //최종 혜택금액을 계산하는 기능
+        //최종 혜택금액을 계산하는 기능 혜택금액은 디스카운트 + 증정품(이미 토탈 배네핏에 추가되어 있음)
+        totalBenefit += discountPrice;
     }
-    public int resultPrice(){ //최종 결제금액 계산
-        return -1;
+    public int resultPrice(int beforePrice){ //최종 결제금액 계산
+        beforePrice -= discountPrice;
+        return  beforePrice;
     }
 
 }
