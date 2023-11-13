@@ -18,7 +18,7 @@ public class Discount {
         if(dateInfomation.getIsStar()){
             discount += 1000;
             discountPrice += discount;
-            System.out.println("특별 할인: -"+formatter.format(discount));
+            System.out.println("특별 할인: -"+formatter.format(discount)+"원");
         }
 
         return discount;
@@ -81,7 +81,8 @@ public class Discount {
         totalBenefit += discountPrice;
         return totalBenefit;
     }
-    public int resultPrice(int beforePrice){ //최종 결제금액 계산
+    public int resultPrice(OrderInfomation orderInfomation){ //최종 결제금액 계산
+        int beforePrice = orderInfomation.getTotalPrice();
         beforePrice -= discountPrice;
         return  beforePrice;
     }

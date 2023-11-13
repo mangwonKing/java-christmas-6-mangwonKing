@@ -10,7 +10,7 @@ public enum Message {
     OUT_PRESENT("<증정 메뉴>"),
     OUT_BENEFIT("<혜택 내역>"),
     OUT_DISCOUNT_PRICE("<총혜택 금액>"),
-    OUT_AFFTER_DISCOUNT("할인 후 예상 결제 금액"),
+    OUT_AFFTER_DISCOUNT("<할인 후 예상 결제 금액>"),
     OUT_BADGE("<12월 이벤트 배지>");
 
     private final String message;

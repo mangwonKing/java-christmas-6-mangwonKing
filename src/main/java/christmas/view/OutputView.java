@@ -61,8 +61,10 @@ public class OutputView {
         System.out.println("-"+formatter.format(benefit)+"원");
     }
 
-    public void printAffterPrice(int discountPrice){
-        // 예상 결제금액 출력
+    public void printAffterPrice(Discount discount,OrderInfomation orderInfomation){
+        System.out.println(OUT_AFFTER_DISCOUNT.getMessage());
+        int result = discount.resultPrice(orderInfomation);
+        System.out.println(formatter.format(result)+"원");
     }
     public void printBadge(String badge){
         //이벤트 뱃지 문구 출력 후 값 출력
