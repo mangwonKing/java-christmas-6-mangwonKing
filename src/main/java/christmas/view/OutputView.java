@@ -2,6 +2,8 @@ package christmas.view;
 
 import christmas.model.OrderInfomation;
 
+import java.text.DecimalFormat;
+
 import static christmas.system.Message.*;
 
 public class OutputView {
@@ -12,13 +14,16 @@ public class OutputView {
         System.out.println("12월 "+day + "일에 우테코 식당에서 받을 이벤트 혜택 미리보기!");
     }
     public void printOrder(OrderInfomation orderInfomation){ // 주문 메뉴 출력
-        System.out.println(OUT_MENU);
+        System.out.println(OUT_MENU.getMessage());
         orderInfomation.printOrder();
 
     }
 
     public void printBeforePrice(int total){
         //할인 전 총 주문금액 문구 출력 후 값 출력
+        System.out.println(OUT_BEFORE_DISCOUNT.getMessage());
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        System.out.println( formatter.format(total) + "원" );
     }
 
     public void printHasPresent(boolean hasPresent){

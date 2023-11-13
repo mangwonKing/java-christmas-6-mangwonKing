@@ -15,8 +15,8 @@ public class EventPlannerController {
         OrderInfomation orderInfomation = new OrderInfomation(inputView.readMenu());
         OutputView outputView = new OutputView();
         outputView.printOrder(orderInfomation);
+        outputView.printBeforePrice(orderInfomation.calculateTotal());
 
-        orderInfomation.calculateTotal();
         Discount discount = new Discount();
         discount.checkMinOrderPrice(orderInfomation.getTotalPrice());
         System.out.println("할인받을 금액은");

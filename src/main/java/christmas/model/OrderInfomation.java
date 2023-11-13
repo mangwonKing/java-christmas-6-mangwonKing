@@ -39,12 +39,12 @@ public class OrderInfomation {
         return count;
     }
 
-    public void calculateTotal(){
+    public int calculateTotal(){
         for(String menuName : order.keySet()){
             Menu menu = Menu.findMenu(menuName);
             totalPrice += (menu.getPrice() * order.get(menuName));
         }
-        System.out.println(totalPrice);
+        return totalPrice;
     }
     public int getTotalPrice(){
         return totalPrice;
