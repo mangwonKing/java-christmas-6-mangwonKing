@@ -16,7 +16,7 @@ public class EventPlannerController {
         DateInfomation dateInfomation = new DateInfomation(date);
         dateInfomation.checkDay();
         OrderInfomation orderInfomation = new OrderInfomation(inputView.readMenu());
-
+        outputView.printReserveMessage(dateInfomation.getDay());
         outputView.printOrder(orderInfomation);
         outputView.printBeforePrice(orderInfomation.calculateTotal());
         outputView.printHasPresent(discount.checkPresent(orderInfomation.getTotalPrice()));
