@@ -22,6 +22,7 @@ public class EventPlannerController {
         outputView.printHasPresent(discount.checkPresent(orderInfomation.getTotalPrice()));
 
         outputView.printDiscountList(discount,orderInfomation,dateInfomation);
+        outputView.printTotalDiscount(discount);
 
 
 
