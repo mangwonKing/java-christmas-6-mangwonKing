@@ -29,12 +29,15 @@ public class Discount {
             discountPrice += 1000;
         }
     }
-    public void checkWeekendDay(int day){
+    public void checkWeekendDay(int day, OrderInfomation orderInfomation){
+        int benefit = 0;
         if(SpecialDay.checkWeekend(day)){
-            //주말할인 진행 - return 문 작성
+            benefit =2023*orderInfomation.countCategory("메인");
+            discountPrice += benefit;
+            return;
         }
-        //평일할인 진행 - return 문 작성
-
+        benefit = 2023 * orderInfomation.countCategory("디저트");
+        discountPrice += benefit;;
     }
     public boolean checkMinOrderPrice(int total){ //최소주문금액 만족하는지
         if(total >= MINIMUM_ORDER_PRICE){

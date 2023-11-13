@@ -14,7 +14,7 @@ public class EventPlannerController {
         dateInfomation.checkDay();
         OrderInfomation orderInfomation = new OrderInfomation(inputView.readMenu());
         for(String name : orderInfomation.getKey()){
-            System.out.println(orderInfomation.checkCategory(name));
+            System.out.println(orderInfomation.getCategory(name));
             System.out.println(orderInfomation.getKey());
             System.out.println(orderInfomation.getValue());
         }
@@ -23,7 +23,7 @@ public class EventPlannerController {
         discount.checkMinOrderPrice(orderInfomation.getTotalPrice());
         System.out.println("할인받을 금액은");
         System.out.println(discount.calculateDayDiscount(dateInfomation.getDay()));
-
+        discount.checkWeekendDay(dateInfomation.getDay(),orderInfomation);
 
     }
     public void run(){
