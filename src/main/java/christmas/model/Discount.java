@@ -2,11 +2,12 @@ package christmas.model;
 
 public class Discount {
     private final int MINIMUM_ORDER_PRICE = 10000;
+    private final int PRESENT_ORDER_PRICE = 120000;
     private final int CHRISTMAS = 25;
     private final int initDiscount = 1000;
-    private boolean hasPresent;
+    private boolean hasPresent = false;
     private String badge;
-    private int discountPrice; // 할인금액
+    private int discountPrice = 0; // 할인금액
 
 
 
@@ -23,6 +24,17 @@ public class Discount {
 
         //체크해서 총 혜택을 더해준 뒤 discountPrice에 저장
     }
+
+    public void checkSpecialDay(int day){
+        if(SpecialDay.checkWeekend(day)){
+            //주말할인 진행 - return 문 작성
+        }
+        if(SpecialDay.checkSpecial(day)){
+            //이벤트데이 할인 진행 - return 문 작성 x
+        }
+        //평일할인 진행 - return 문 작성
+
+    }
     public boolean checkMinOrderPrice(int total){ //최소주문금액 만족하는지
         if(total >= MINIMUM_ORDER_PRICE){
             return true;
@@ -34,11 +46,15 @@ public class Discount {
         if(day > CHRISTMAS){
             return 0;
         }
-        return initDiscount + ((day-1)* 100);
+        discountPrice = initDiscount + ((day-1)* 100);
+        return discountPrice;
     }
 
-    public void checkPresent(int orderPrice){ // 12만원을 넘겼는지
-
+    public boolean checkPresent(int orderPrice){ // 12만원을 넘겼는지
+        if(orderPrice >= PRESENT_ORDER_PRICE){
+            return true;
+        }
+        return false;
     }
     public void checkBadge(){
         //총 할인 금액으로 뱃지 판별해서 저장
