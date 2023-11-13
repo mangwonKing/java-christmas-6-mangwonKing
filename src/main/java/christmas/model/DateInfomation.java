@@ -16,4 +16,8 @@ public class DateInfomation {
         //System.out.println(isWeekend); 테스트용 , 구현 완료 후 제거할것
         //System.out.println(isStar);
     }
+
+    public int getDay() {
+        return day;
+    }
 }

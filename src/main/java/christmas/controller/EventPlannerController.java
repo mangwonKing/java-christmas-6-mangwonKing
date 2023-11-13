@@ -21,6 +21,9 @@ public class EventPlannerController {
         orderInfomation.calculateTotal();
         Discount discount = new Discount();
         discount.checkMinOrderPrice(orderInfomation.getTotalPrice());
+        System.out.println("할인받을 금액은");
+        System.out.println(discount.calculateDayDiscount(dateInfomation.getDay()));
+
 
     }
     public void run(){
