@@ -9,12 +9,8 @@ public class OrderInfomation {
     private Map<String,Integer> order = new HashMap<>();
     private int totalPrice = 0;
 
-
     public OrderInfomation(Map<String,Integer> order){
         this.order = order;
-    }
-    public void checkMenu(String name){
-
     }
     public List<Integer> getValue(){
         List<Integer> list = new ArrayList<>(order.values());

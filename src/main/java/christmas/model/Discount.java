@@ -24,13 +24,14 @@ public class Discount {
 
         //체크해서 총 혜택을 더해준 뒤 discountPrice에 저장
     }
-
     public void checkSpecialDay(int day){
+        if(SpecialDay.checkSpecial(day)){
+            discountPrice += 1000;
+        }
+    }
+    public void checkWeekendDay(int day){
         if(SpecialDay.checkWeekend(day)){
             //주말할인 진행 - return 문 작성
-        }
-        if(SpecialDay.checkSpecial(day)){
-            //이벤트데이 할인 진행 - return 문 작성 x
         }
         //평일할인 진행 - return 문 작성
 
