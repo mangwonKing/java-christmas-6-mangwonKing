@@ -2,10 +2,12 @@ package christmas.model;
 
 
 import christmas.system.Badge;
+import christmas.system.BadgeDiscount;
 
 import java.text.DecimalFormat;
 
 import static christmas.system.Badge.*;
+import static christmas.system.BadgeDiscount.*;
 
 public class Discount {
     private final int MINIMUM_ORDER_PRICE = 10000;
@@ -72,13 +74,13 @@ public class Discount {
         return hasPresent;
     }
     public String checkBadge(){
-        if(totalBenefit >= 5000 && totalBenefit < 10000){
+        if(totalBenefit >= MIN_STAR.getMinDiscount() && totalBenefit < MIN_TREE.getMinDiscount()){
             badge = STAR.getBadge();
         }
-        if(totalBenefit >= 10000 && totalBenefit < 20000){
+        if(totalBenefit >= MIN_TREE.getMinDiscount() && totalBenefit < MIN_SANTA.getMinDiscount()){
             badge = TREE.getBadge();
         }
-        if(totalBenefit >= 20000){
+        if(totalBenefit >= MIN_SANTA.getMinDiscount()){
             badge = SANTA.getBadge();
         }
         return badge;
