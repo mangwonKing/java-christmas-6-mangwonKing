@@ -3,10 +3,13 @@ package christmas.model;
 import christmas.system.Menu;
 
 import java.util.*;
+import static christmas.system.Benefit.*;
 
 public class OrderInfomation {
-    private final int MINIMUM_ORDER_PRICE = 10000;
-    private Map<String, Integer> order = new HashMap<>();
+    private final String SPACE = " ";
+    private final String UNIT = "개";
+    private final int ZERO = 0;
+    private final Map<String, Integer> order;
     private int totalPrice = 0;
 
     public OrderInfomation(Map<String, Integer> order) {
@@ -15,7 +18,7 @@ public class OrderInfomation {
 
     public void printOrder() {
         for (String menu : order.keySet()) {
-            System.out.println(menu + " " + order.get(menu) + "개");
+            System.out.println(menu + SPACE + order.get(menu) + UNIT);
         }
     }
 
@@ -34,7 +37,7 @@ public class OrderInfomation {
     }
 
     public int countCategory(String category) {
-        int count = 0;
+        int count = ZERO;
         for (String menuName : order.keySet()) {
             if (category.equals(getCategory(menuName))) {
                 count += order.get(menuName);
@@ -52,7 +55,7 @@ public class OrderInfomation {
     }
 
     public boolean checkMinimunPrice() {
-        if (MINIMUM_ORDER_PRICE > totalPrice) {
+        if (MINIMUM_ORDER_PRICE.getPrice() > totalPrice) {
             return false;
         }
         return true;
