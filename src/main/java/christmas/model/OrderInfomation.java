@@ -10,6 +10,7 @@ public class OrderInfomation {
     private final String UNIT = "개";
     private final int ZERO = 0;
     private final Map<String, Integer> order;
+
     private int totalPrice = 0;
 
     public OrderInfomation(Map<String, Integer> order) {

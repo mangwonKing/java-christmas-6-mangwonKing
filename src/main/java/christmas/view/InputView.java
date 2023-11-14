@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import static christmas.system.Date.*;
 import static christmas.system.Message.*;
 
 public class InputView {
@@ -31,7 +31,7 @@ public class InputView {
     }
 
     private void validate(int date) {
-        if (date > 31 || date < 1) {
+        if (date > LAST_DAY.getDate() || date < FIRST_DAY.getDate()) {
             throw new IllegalArgumentException();
         }
     }
