@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 
 import static christmas.system.Badge.*;
 import static christmas.system.BadgeDiscount.*;
+import static christmas.system.BenefitMessage.*;
 
 public class Discount {
     private final int MINIMUM_ORDER_PRICE = 10000;
@@ -26,7 +27,7 @@ public class Discount {
         if(dateInfomation.getIsStar()){
             discount += 1000;
             discountPrice += discount;
-            System.out.println("특별 할인: -"+formatter.format(discount)+"원");
+            System.out.println(SPECIAL_DISCOUNT.getBenefit() +formatter.format(discount)+UNIT.getBenefit());
         }
 
         return discount;
@@ -38,7 +39,7 @@ public class Discount {
         }
         int discount = initDiscount + ((day-1)* 100);
         discountPrice += discount;
-        System.out.println("크리스마스 디데이 할인: -" + formatter.format(discount)+"원");
+        System.out.println(DDAY_DISCOUNT.getBenefit() + formatter.format(discount)+UNIT.getBenefit());
         return discount;
     }
     public int checkWeekendDay(DateInfomation dateInfomation, OrderInfomation orderInfomation){
@@ -47,14 +48,14 @@ public class Discount {
             benefit =2023*orderInfomation.countCategory("메인");
             discountPrice += benefit;
             if(benefit > 0){
-                System.out.println("주말 할인: -"+formatter.format(benefit) +"원");
+                System.out.println(WEEKEND_DISCOUNT.getBenefit() +formatter.format(benefit) +UNIT.getBenefit());
             }
             return benefit;
         }
         benefit = 2023 * orderInfomation.countCategory("디저트");
         discountPrice += benefit;
         if(benefit > 0){
-            System.out.println("평일 할인: -"+formatter.format(benefit)+"원");
+            System.out.println(NORMAL_DISCOUNT.getBenefit() +formatter.format(benefit)+UNIT.getBenefit());
         }
         return benefit;
     }
