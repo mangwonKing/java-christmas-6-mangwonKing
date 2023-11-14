@@ -7,11 +7,11 @@ public enum BadgeDiscount {
 
     private final int minDiscount;
 
-    BadgeDiscount(int minDiscount){
+    BadgeDiscount(int minDiscount) {
         this.minDiscount = minDiscount;
     }
 
-    public int getMinDiscount(){
+    public int getMinDiscount() {
         return minDiscount;
     }
 }

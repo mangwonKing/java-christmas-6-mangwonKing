@@ -6,10 +6,11 @@ public enum Date {
 
     private int date;
 
-    Date(int date){
-        this.date= date;
+    Date(int date) {
+        this.date = date;
     }
-    public int getDate(){
+
+    public int getDate() {
         return date;
     }
 }

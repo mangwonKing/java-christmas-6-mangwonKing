@@ -11,11 +11,11 @@ public enum BenefitMessage {
 
     private final String benefit;
 
-    BenefitMessage(String benefit){
+    BenefitMessage(String benefit) {
         this.benefit = benefit;
     }
 
-    public String getBenefit(){
+    public String getBenefit() {
         return benefit;
     }
 

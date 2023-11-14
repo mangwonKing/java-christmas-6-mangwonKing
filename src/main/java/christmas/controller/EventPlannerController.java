@@ -7,7 +7,7 @@ import christmas.view.InputView;
 import christmas.view.OutputView;
 
 public class EventPlannerController {
-    public void run(){
+    public void run() {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
         Discount discount = new Discount();
@@ -21,9 +21,9 @@ public class EventPlannerController {
         outputView.printBeforePrice(orderInfomation.calculateTotal());
         outputView.printHasPresent(discount.checkPresent(orderInfomation.getTotalPrice()));
 
-        outputView.printDiscountList(discount,orderInfomation,dateInfomation);
+        outputView.printDiscountList(discount, orderInfomation, dateInfomation);
         outputView.printTotalDiscount(discount);
-        outputView.printAffterPrice(discount,orderInfomation);
+        outputView.printAffterPrice(discount, orderInfomation);
         outputView.printBadge(discount.checkBadge());
 
     }
