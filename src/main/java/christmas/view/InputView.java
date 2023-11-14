@@ -51,19 +51,21 @@ public class InputView {
         while (true) {
             try {
                 String order = Console.readLine();
-                List<String> menus = Arrays.asList(order.split(SEPERATE_MENU));
-                int size = menus.size();
-                saveOrder(menus, menuDetail);
-                checkRedundant(size, menuDetail);
-                checkTotal(menuDetail);
-                checkCategory(menuDetail);
+                checkMenu(order,menuDetail);
                 return menuDetail;
             } catch (IllegalArgumentException e) {
                 System.out.println(ORDER_ERROR.getErrorMessage());
             }
         }
     }
-
+    private void checkMenu(String order,Map<String,Integer> menuDetail){
+        List<String> menus = Arrays.asList(order.split(SEPERATE_MENU));
+        int size = menus.size();
+        saveOrder(menus, menuDetail);
+        checkRedundant(size, menuDetail);
+        checkTotal(menuDetail);
+        checkCategory(menuDetail);
+    }
     private void checkCategory(Map<String, Integer> menuDetail) {
         boolean categoryFlag = false;
         for (String menuName : menuDetail.keySet()) {

@@ -7,10 +7,12 @@ import christmas.view.InputView;
 import christmas.view.OutputView;
 
 public class EventPlannerController {
+
     public void run() {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
         Discount discount = new Discount();
+
         outputView.printWelcom();
         int date = inputView.readDate();
         DateInfomation dateInfomation = new DateInfomation(date);

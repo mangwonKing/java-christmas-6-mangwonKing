@@ -20,21 +20,19 @@ public class OutputView {
         System.out.println(OUT_RESERVE.getMessage(day));
     }
 
-    public void printOrder(OrderInfomation orderInfomation) { // 주문 메뉴 출력
+    public void printOrder(OrderInfomation orderInfomation) {
         System.out.println(OUT_MENU.getMessage());
         orderInfomation.printOrder();
 
     }
 
     public void printBeforePrice(int total) {
-        //할인 전 총 주문금액 문구 출력 후 값 출력
         System.out.println(OUT_BEFORE_DISCOUNT.getMessage());
 
         System.out.println(formatter.format(total) + UNIT.getMessage());
     }
 
     public void printHasPresent(boolean hasPresent) {
-        //증정샴페인 있는지 문구출력 후 출력 없으면 없다.
         System.out.println(OUT_PRESENT.getMessage());
         if (!hasPresent) {
             System.out.println(NOTHING.getMessage());
@@ -59,7 +57,7 @@ public class OutputView {
         }
     }
 
-    public void printTotalDiscount(Discount discount) { // 총 혜택금액 출력
+    public void printTotalDiscount(Discount discount) {
         System.out.println(OUT_DISCOUNT_PRICE.getMessage());
         int benefit = discount.totalDiscount();
         if (benefit > ZERO) {
