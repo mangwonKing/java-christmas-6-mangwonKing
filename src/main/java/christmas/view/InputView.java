@@ -10,14 +10,10 @@ import java.util.Map;
 
 import static christmas.system.Date.*;
 import static christmas.system.Message.*;
+import static christmas.system.ErrorMessage.*;
 
 public class InputView {
-
-    public static void main(String[] args) { //출력을 확인할 임시 main 메서드
-
-    }
-
-    public int readDate() { //방문날짜 입력 문구 출력 후 방문날짜 입력받고 값 넘겨주기
+    public int readDate() {
         System.out.println(IN_DATE.getMessage());
         while (true) {
             try {
@@ -25,7 +21,7 @@ public class InputView {
                 validate(date);
                 return date;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+                System.out.println(DATE_ERROR.getErrorMessage());
             }
         }
     }
@@ -37,7 +33,7 @@ public class InputView {
     }
 
 
-    public Map<String, Integer> readMenu() { //메뉴정보 입력문구 출력 후 메뉴정보 입력받고 값 넘겨주기
+    public Map<String, Integer> readMenu() {
         System.out.println(IN_MENU.getMessage());
         Map<String, Integer> menuDetail = new HashMap<>();
         while (true) {
@@ -51,12 +47,12 @@ public class InputView {
                 checkCategory(menuDetail);
                 return menuDetail;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                System.out.println(ORDER_ERROR.getErrorMessage());
             }
         }
     }
 
-    private void checkCategory(Map<String, Integer> menuDetail) { // 음료만 시킨 경우인지 확인한다.
+    private void checkCategory(Map<String, Integer> menuDetail) {
         boolean categoryFlag = false;
         for (String menuName : menuDetail.keySet()) {
             for (Menu menu : Menu.values()) { //****** 메서드 분리 리팩토링 필요 ****
@@ -73,7 +69,7 @@ public class InputView {
         }
     }
 
-    private void checkTotal(Map<String, Integer> menuDetail) {//총 개수를 확인한다.
+    private void checkTotal(Map<String, Integer> menuDetail) {
         int sum = 0;
         for (int count : menuDetail.values()) {
             sum += count;
@@ -83,7 +79,7 @@ public class InputView {
         }
     }
 
-    private void checkRedundant(int size, Map<String, Integer> menuDetail) { //중복된 주문이 없는지 확인한다.
+    private void checkRedundant(int size, Map<String, Integer> menuDetail) {
         if (size != menuDetail.size()) {
             throw new IllegalArgumentException();
         }
@@ -103,13 +99,13 @@ public class InputView {
         }
     }
 
-    private void checkOrder(int size) { // 주문형식이 정상적인지 확인한다.
+    private void checkOrder(int size) {
         if (size != 2) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void checkName(String name) { // 메뉴의 이름을 검사한다.
+    private void checkName(String name) {
         boolean nameFlag = false;
         for (Menu menuName : Menu.values()) {
             if (menuName.nameCheck(name)) {
@@ -122,7 +118,7 @@ public class InputView {
         }
     }
 
-    private void checkCount(int count) { //각 메뉴의 개수를 검사한다.
+    private void checkCount(int count) {
         if (count < 1) {
             throw new IllegalArgumentException();
         }
