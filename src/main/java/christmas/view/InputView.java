@@ -18,11 +18,12 @@ public class InputView {
     private final int PAIR = 2;
     private final int INDEX_ONE = 0;
     private final int INDEX_TWO = 1;
-    private final String SEPERATE_ORDER = "-";
-    private final String SEPERATE_MENU = ",";
     private final int ZERO = 0;
     private final int MAX_ORDER = 20;
     private final String CATEGORU_CANT_ALONE = "음료";
+    private final String SEPERATE_ORDER = "-";
+    private final String SEPERATE_MENU = ",";
+
 
     public int readDate() {
         System.out.println(IN_DATE.getMessage());
