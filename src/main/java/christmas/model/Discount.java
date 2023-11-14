@@ -1,15 +1,21 @@
 package christmas.model;
 
+
+import christmas.system.Badge;
+
 import java.text.DecimalFormat;
+
+import static christmas.system.Badge.*;
 
 public class Discount {
     private final int MINIMUM_ORDER_PRICE = 10000;
     private final int PRESENT_ORDER_PRICE = 120000;
     private final int CHRISTMAS = 25;
     private final int initDiscount = 1000;
+
     private boolean hasPresent = false;
     private String badge = "없음";
-    private int discountPrice = 0; // 할인금액
+    private int discountPrice = 0;
     private int totalBenefit = 0;
     DecimalFormat formatter = new DecimalFormat("###,###");
 
@@ -23,7 +29,7 @@ public class Discount {
 
         return discount;
     }
-    public int calculateDayDiscount(DateInfomation dateInfomation){ //날짜별로 d데이 할인이 얼마나 되는지
+    public int calculateDayDiscount(DateInfomation dateInfomation){
         int day = dateInfomation.getDay();
         if(day > CHRISTMAS){
             return 0;
@@ -50,13 +56,14 @@ public class Discount {
         }
         return benefit;
     }
-    public boolean checkMinOrderPrice(int total){ //최소주문금액 만족하는지
+    public boolean checkMinOrderPrice(int total){
+
         if(total >= MINIMUM_ORDER_PRICE){
             return true;
         }
         return false;
     }
-    public boolean checkPresent(int total){ // 12만원을 넘겼는지
+    public boolean checkPresent(int total){
         if(total >= PRESENT_ORDER_PRICE){
             totalBenefit += 25000;
             hasPresent = true;
@@ -65,24 +72,22 @@ public class Discount {
         return hasPresent;
     }
     public String checkBadge(){
-        //총 혜택 금액으로 뱃지 판별해서 저장
         if(totalBenefit >= 5000 && totalBenefit < 10000){
-            badge = "별";
+            badge = STAR.getBadge();
         }
         if(totalBenefit >= 10000 && totalBenefit < 20000){
-            badge = "트리";
+            badge = TREE.getBadge();
         }
         if(totalBenefit >= 20000){
-            badge = "산타";
+            badge = SANTA.getBadge();
         }
         return badge;
     }
     public int totalDiscount(){
-        //최종 혜택금액을 계산하는 기능 혜택금액은 디스카운트 + 증정품(이미 토탈 배네핏에 추가되어 있음)
         totalBenefit += discountPrice;
         return totalBenefit;
     }
-    public int resultPrice(OrderInfomation orderInfomation){ //최종 결제금액 계산
+    public int resultPrice(OrderInfomation orderInfomation){
         int beforePrice = orderInfomation.getTotalPrice();
         beforePrice -= discountPrice;
         return  beforePrice;

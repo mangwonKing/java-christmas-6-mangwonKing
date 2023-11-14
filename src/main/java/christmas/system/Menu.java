@@ -37,9 +37,6 @@ public enum Menu {
         }
         return false;
     }
-    public String getName(){
-        return name;
-    }
     public String getCategory(){
         return category;
     }
