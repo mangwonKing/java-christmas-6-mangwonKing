@@ -13,6 +13,17 @@ import static christmas.system.Message.*;
 import static christmas.system.ErrorMessage.*;
 
 public class InputView {
+
+    private final int MIN_COUNT = 1;
+    private final int PAIR = 2;
+    private final int INDEX_ONE = 0;
+    private final int INDEX_TWO = 1;
+    private final String SEPERATE_ORDER = "-";
+    private final String SEPERATE_MENU = ",";
+    private final int ZERO = 0;
+    private final int MAX_ORDER = 20;
+    private final String CATEGORU_CANT_ALONE = "음료";
+
     public int readDate() {
         System.out.println(IN_DATE.getMessage());
         while (true) {
@@ -39,7 +50,7 @@ public class InputView {
         while (true) {
             try {
                 String order = Console.readLine();
-                List<String> menus = Arrays.asList(order.split(","));
+                List<String> menus = Arrays.asList(order.split(SEPERATE_MENU));
                 int size = menus.size();
                 saveOrder(menus, menuDetail);
                 checkRedundant(size, menuDetail);
@@ -57,7 +68,7 @@ public class InputView {
         for (String menuName : menuDetail.keySet()) {
             for (Menu menu : Menu.values()) { //****** 메서드 분리 리팩토링 필요 ****
                 if (menu.nameCheck(menuName)) {
-                    if (!menu.getCategory().equals("음료")) {
+                    if (!menu.getCategory().equals(CATEGORU_CANT_ALONE)) {
                         categoryFlag = true;
                         break;
                     }
@@ -70,11 +81,11 @@ public class InputView {
     }
 
     private void checkTotal(Map<String, Integer> menuDetail) {
-        int sum = 0;
+        int sum = ZERO;
         for (int count : menuDetail.values()) {
             sum += count;
         }
-        if (sum > 20) {
+        if (sum > MAX_ORDER) {
             throw new IllegalArgumentException();
         }
     }
@@ -88,10 +99,10 @@ public class InputView {
     private void saveOrder(List<String> menus, Map<String, Integer> menuDetail) {
 
         for (String getMenu : menus) {
-            String[] menuInfo = getMenu.split("-");
+            String[] menuInfo = getMenu.split(SEPERATE_ORDER);
             checkOrder(menuInfo.length);
-            String menuName = menuInfo[0];
-            int countMenu = Integer.parseInt((menuInfo[1]));
+            String menuName = menuInfo[INDEX_ONE];
+            int countMenu = Integer.parseInt((menuInfo[INDEX_TWO]));
             checkCount(countMenu);
             checkName(menuName);
 
@@ -100,7 +111,7 @@ public class InputView {
     }
 
     private void checkOrder(int size) {
-        if (size != 2) {
+        if (size != PAIR) {
             throw new IllegalArgumentException();
         }
     }
@@ -119,7 +130,7 @@ public class InputView {
     }
 
     private void checkCount(int count) {
-        if (count < 1) {
+        if (count < MIN_COUNT) {
             throw new IllegalArgumentException();
         }
     }
