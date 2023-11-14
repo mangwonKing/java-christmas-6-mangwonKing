@@ -9,13 +9,13 @@ import java.text.DecimalFormat;
 import static christmas.system.Badge.*;
 import static christmas.system.BadgeDiscount.*;
 import static christmas.system.BenefitMessage.*;
+import static christmas.system.Date.*;
 
 public class Discount {
     private final int MINIMUM_ORDER_PRICE = 10000;
     private final int PRESENT_ORDER_PRICE = 120000;
-    private final int CHRISTMAS = 25;
     private final int initDiscount = 1000;
-
+    private final int ZERO = 0;
     private boolean hasPresent = false;
     private String badge = "없음";
     private int discountPrice = 0;
@@ -23,7 +23,7 @@ public class Discount {
     DecimalFormat formatter = new DecimalFormat("###,###");
 
     public int checkSpecialDay(DateInfomation dateInfomation){
-        int discount = 0;
+        int discount = ZERO;
         if(dateInfomation.getIsStar()){
             discount += 1000;
             discountPrice += discount;
@@ -34,8 +34,8 @@ public class Discount {
     }
     public int calculateDayDiscount(DateInfomation dateInfomation){
         int day = dateInfomation.getDay();
-        if(day > CHRISTMAS){
-            return 0;
+        if(day > CHRISTMAS.getDate()){
+            return ZERO;
         }
         int discount = initDiscount + ((day-1)* 100);
         discountPrice += discount;
@@ -45,16 +45,16 @@ public class Discount {
     public int checkWeekendDay(DateInfomation dateInfomation, OrderInfomation orderInfomation){
         int benefit = 0;
         if(dateInfomation.getIsWeekend()){
-            benefit =2023*orderInfomation.countCategory("메인");
+            benefit =YEAR.getDate()*orderInfomation.countCategory(WEEKEND_DISCOUNT_CATEGORY.getBenefit());
             discountPrice += benefit;
-            if(benefit > 0){
+            if(benefit > ZERO){
                 System.out.println(WEEKEND_DISCOUNT.getBenefit() +formatter.format(benefit) +UNIT.getBenefit());
             }
             return benefit;
         }
-        benefit = 2023 * orderInfomation.countCategory("디저트");
+        benefit = YEAR.getDate() * orderInfomation.countCategory(NORMAL_DISCOUNT_CATEGORY.getBenefit());
         discountPrice += benefit;
-        if(benefit > 0){
+        if(benefit > ZERO){
             System.out.println(NORMAL_DISCOUNT.getBenefit() +formatter.format(benefit)+UNIT.getBenefit());
         }
         return benefit;
