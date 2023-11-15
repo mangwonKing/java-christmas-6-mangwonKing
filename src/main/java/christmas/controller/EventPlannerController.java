@@ -7,26 +7,33 @@ import christmas.view.InputView;
 import christmas.view.OutputView;
 
 public class EventPlannerController {
+    private final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final Discount discount = new Discount();
 
     public void run() {
-        OutputView outputView = new OutputView();
-        InputView inputView = new InputView();
-        Discount discount = new Discount();
-
         outputView.printWelcom();
-        int date = inputView.readDate();
-        DateInfomation dateInfomation = new DateInfomation(date);
-        dateInfomation.checkDay();
-        OrderInfomation orderInfomation = new OrderInfomation(inputView.readMenu());
+        DateInfomation dateInfomation = inputDate();
+        OrderInfomation orderInfomation = inputOrder();
+
         outputView.printReserveMessage(dateInfomation.getDay());
         outputView.printOrder(orderInfomation);
         outputView.printBeforePrice(orderInfomation.calculateTotal());
         outputView.printHasPresent(discount.checkPresent(orderInfomation.getTotalPrice()));
-
         outputView.printDiscountDetails(discount, orderInfomation, dateInfomation);
         outputView.printTotalDiscount(discount);
         outputView.printAffterPrice(discount, orderInfomation);
         outputView.printBadge(discount.checkBadge());
+    }
+    private DateInfomation inputDate(){
+        int date = inputView.readDate();
+        DateInfomation dateInfomation = new DateInfomation(date);
+        dateInfomation.checkDay();
+        return dateInfomation;
 
+    }
+    private OrderInfomation inputOrder(){
+        OrderInfomation orderInfomation = new OrderInfomation(inputView.readMenu());
+        return orderInfomation;
     }
 }
