@@ -52,8 +52,10 @@ public class OutputView {
         printDdayDiscount(discount.calculateDayDiscount(dateInfomation));
         printWeekendDiscount(discount.checkWeekendDay(dateInfomation, orderInfomation), dateInfomation.getIsWeekend());
         printSpecialDiscount(discount.checkSpecialDay(dateInfomation));
-
-        if (discount.getHasPresent()) {
+        printPresentDiscount(discount.getHasPresent());
+    }
+    private void printPresentDiscount(boolean hasPresent){
+        if(hasPresent){
             System.out.println(OUT_PRESENT_DISCOUNT.getMessage());
         }
     }
