@@ -33,7 +33,13 @@ public class ExceptionTest extends NsTest {
         });
     }
     //총 주문 개수가 20개를 넘기지 않았는지
-
+    @Test
+    void 메뉴_개수_스무개_초과_테스트() {
+        assertSimpleTest(() -> {
+            runException("4","해산물파스타-10,제로콜라-15");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
     //음료만 주문하지는 않았는지
 
     //1 이상 31 이하의 숫자가 아닌 다른 수가 입력되는 경우
