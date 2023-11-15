@@ -10,12 +10,10 @@ import static christmas.system.Date.*;
 import static christmas.system.Benefit.*;
 
 public class Discount {
-
     private final int ZERO = 0;
     private final int ONE = 1;
     private final int DAY_DISCOUNT = 100;
     private boolean hasPresent = false;
-    private String badge = "없음";
     private int discountPrice = 0;
     private int totalBenefit = 0;
     DecimalFormat formatter = new DecimalFormat("###,###");
@@ -78,6 +76,7 @@ public class Discount {
     }
 
     public String checkBadge() {
+        String badge = NON.getBadge();
         if (totalBenefit >= MIN_STAR.getMinDiscount() && totalBenefit < MIN_TREE.getMinDiscount()) {
             badge = STAR.getBadge();
         }
@@ -87,6 +86,7 @@ public class Discount {
         if (totalBenefit >= MIN_SANTA.getMinDiscount()) {
             badge = SANTA.getBadge();
         }
+
         return badge;
     }
 
