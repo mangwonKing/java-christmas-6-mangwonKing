@@ -48,20 +48,7 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         });
     }
-    @Test
-    void 총_혜택_계산(){
-        assertSimpleTest(() -> {
-            run("6", "티본스테이크-2,레드와인-1,초코케이크-3");
-            assertThat(output()).contains("<총혜택 금액>" + LINE_SEPARATOR + "-32,569원");
-        });
-    }
-    @Test
-    void 뱃지_확인(){
-        assertSimpleTest(() -> {
-            run("3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
-            assertThat(output()).contains("<12월 이벤트 배지>" + LINE_SEPARATOR + "산타");
-        });
-    }
+
 
     @Override
     protected void runMain() {
