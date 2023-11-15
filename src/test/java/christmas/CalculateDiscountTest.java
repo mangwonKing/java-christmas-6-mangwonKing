@@ -18,7 +18,11 @@ public class CalculateDiscountTest {
         discount = new Discount();
         dateInfomation = new DateInfomation(testDate);
     }
-
+    @Test
+    void 이벤트_대상_확인(){
+        boolean result = discount.checkMinOrderPrice(9000);
+        assertThat(result).isEqualTo(false);
+    }
     @Test
     void 디데이_할인_계산(){
         int result = discount.calculateDayDiscount(dateInfomation);
