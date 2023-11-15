@@ -21,4 +21,6 @@ public class BenefitTest {
         boolean result = discount.checkPresent(TOTAL_ORDER_PRICE);
         assertThat(result).isEqualTo(false);
     }
+
+
 }
