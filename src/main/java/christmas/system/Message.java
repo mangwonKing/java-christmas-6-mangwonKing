@@ -17,7 +17,7 @@ public enum Message {
     OUT_PRESENT_DETAIL("샴페인 1개"),
     OUT_PRESENT_DISCOUNT("증정 이벤트: -25,000원"),
     MINUS("-"),
-    UNIT("원");
+    OUT_UNIT("원");
 
     private final String message;
 

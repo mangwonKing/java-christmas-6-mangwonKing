@@ -6,7 +6,9 @@ import christmas.model.OrderInfomation;
 
 import java.text.DecimalFormat;
 
+import static christmas.system.BenefitMessage.*;
 import static christmas.system.Message.*;
+import static christmas.system.Benefit.*;
 
 public class OutputView {
     private final int ZERO = 0;
@@ -23,13 +25,12 @@ public class OutputView {
     public void printOrder(OrderInfomation orderInfomation) {
         System.out.println(OUT_MENU.getMessage());
         orderInfomation.printOrder();
-
     }
 
     public void printBeforePrice(int total) {
         System.out.println(OUT_BEFORE_DISCOUNT.getMessage());
 
-        System.out.println(formatter.format(total) + UNIT.getMessage());
+        System.out.println(formatter.format(total) + OUT_UNIT.getMessage());
     }
 
     public void printHasPresent(boolean hasPresent) {
@@ -38,7 +39,7 @@ public class OutputView {
             System.out.println(NOTHING.getMessage());
             return;
         }
-        System.out.println(OUT_PRESENT_DETAIL);
+        System.out.println(OUT_PRESENT_DETAIL.getMessage());
 
     }
 
@@ -49,11 +50,24 @@ public class OutputView {
             System.out.println(NOTHING.getMessage());
             return;
         }
-        discount.calculateDayDiscount(dateInfomation);
-        discount.checkWeekendDay(dateInfomation, orderInfomation);
-        discount.checkSpecialDay(dateInfomation);
+        int dic = discount.calculateDayDiscount(dateInfomation);
+        if( dic != ZERO){
+            System.out.println(DDAY_DISCOUNT.getBenefit() + formatter.format(dic) + UNIT.getBenefit());
+        }
+        dic = discount.checkWeekendDay(dateInfomation, orderInfomation);
+        if(dic != ZERO && dateInfomation.getIsWeekend()){
+            System.out.println(WEEKEND_DISCOUNT.getBenefit() + formatter.format(dic) + UNIT.getBenefit());
+        }
+        if(dic != ZERO && !dateInfomation.getIsWeekend()){
+            System.out.println(NORMAL_DISCOUNT.getBenefit() + formatter.format(dic) + UNIT.getBenefit());
+        }
+        dic = discount.checkSpecialDay(dateInfomation);
+        if(dic != ZERO){
+            System.out.println(SPECIAL_DISCOUNT.getBenefit() + formatter.format(dic) + UNIT.getBenefit());
+        }
+
         if (discount.getHasPresent()) {
-            System.out.println(OUT_PRESENT_DISCOUNT);
+            System.out.println(OUT_PRESENT_DISCOUNT.getMessage());
         }
     }
 
@@ -61,7 +75,7 @@ public class OutputView {
         System.out.println(OUT_DISCOUNT_PRICE.getMessage());
         int benefit = discount.totalDiscount();
         if (benefit > ZERO) {
-            System.out.println(MINUS.getMessage() + formatter.format(benefit) + UNIT.getMessage());
+            System.out.println(MINUS.getMessage() + formatter.format(benefit) + OUT_UNIT.getMessage());
             return;
         }
         System.out.println(NOTHING.getMessage());
@@ -72,7 +86,7 @@ public class OutputView {
         System.out.println(OUT_AFFTER_DISCOUNT.getMessage());
         int result = discount.resultPrice(orderInfomation);
         if (result > ZERO) {
-            System.out.println(formatter.format(result) + UNIT.getMessage());
+            System.out.println(formatter.format(result) + OUT_UNIT.getMessage());
             return;
         }
         System.out.println(NOTHING.getMessage());

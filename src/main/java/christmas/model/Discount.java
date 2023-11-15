@@ -23,7 +23,6 @@ public class Discount {
         if (dateInfomation.getIsStar()) {
             discount += SPECIAL_DISCOUNT_PRICE.getPrice();
             discountPrice += discount;
-            System.out.println(SPECIAL_DISCOUNT.getBenefit() + formatter.format(discount) + UNIT.getBenefit());
         }
 
         return discount;
@@ -36,7 +35,6 @@ public class Discount {
         }
         int discount = INIT_DISCOUNT.getPrice() + ((day - ONE) * DAY_DISCOUNT);
         discountPrice += discount;
-        System.out.println(DDAY_DISCOUNT.getBenefit() + formatter.format(discount) + UNIT.getBenefit());
         return discount;
     }
 
@@ -45,16 +43,10 @@ public class Discount {
         if (dateInfomation.getIsWeekend()) {
             benefit = YEAR.getDate() * orderInfomation.countCategory(WEEKEND_DISCOUNT_CATEGORY.getBenefit());
             discountPrice += benefit;
-            if (benefit > ZERO) {
-                System.out.println(WEEKEND_DISCOUNT.getBenefit() + formatter.format(benefit) + UNIT.getBenefit());
-            }
             return benefit;
         }
         benefit = YEAR.getDate() * orderInfomation.countCategory(NORMAL_DISCOUNT_CATEGORY.getBenefit());
         discountPrice += benefit;
-        if (benefit > ZERO) {
-            System.out.println(NORMAL_DISCOUNT.getBenefit() + formatter.format(benefit) + UNIT.getBenefit());
-        }
         return benefit;
     }
 
