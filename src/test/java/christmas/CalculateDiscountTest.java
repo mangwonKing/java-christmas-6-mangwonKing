@@ -41,6 +41,14 @@ public class CalculateDiscountTest  extends NsTest{
             assertThat(output()).contains("주말 할인: -2,023원");
         });
     }
+
+    @Test
+    void 평일_할인_계산(){
+        assertSimpleTest(() -> {
+            run("5", "티본스테이크-2,초코케이크-2");
+            assertThat(output()).contains("평일 할인: -4,046원");
+        });
+    }
     @Override
     protected void runMain() {
         Application.main(new String[]{});
