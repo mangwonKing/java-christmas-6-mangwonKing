@@ -24,5 +24,10 @@ public class CalculateDiscountTest {
         int result = discount.calculateDayDiscount(dateInfomation);
         assertThat(result).isEqualTo(1900);
     }
+    @Test
+    void 스페셜_할인_계산(){
+        int result = discount.checkSpecialDay(dateInfomation);
+        assertThat(result).isEqualTo(1000);
+    }
 
 }
