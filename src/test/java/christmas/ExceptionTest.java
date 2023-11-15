@@ -49,6 +49,13 @@ public class ExceptionTest extends NsTest {
         });
     }
     //1 이상 31 이하의 숫자가 아닌 다른 수가 입력되는 경우
+    @Test
+    void 날짜_범위_초과_테스트() {
+        assertSimpleTest(() -> {
+            runException("32");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        });
+    }
     @Override
     protected void runMain() {
         Application.main(new String[]{});
