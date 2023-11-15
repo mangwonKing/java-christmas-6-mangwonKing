@@ -15,7 +15,10 @@ public class EventPlannerController {
         outputView.printWelcom();
         DateInfomation dateInfomation = inputDate();
         OrderInfomation orderInfomation = inputOrder();
+        printResult(dateInfomation,orderInfomation);
 
+    }
+    private void printResult(DateInfomation dateInfomation, OrderInfomation orderInfomation){
         outputView.printReserveMessage(dateInfomation.getDay());
         outputView.printOrder(orderInfomation);
         outputView.printBeforePrice(orderInfomation.calculateTotal());
