@@ -44,16 +44,14 @@ public class OutputView {
     }
 
     public void printDiscountList(Discount discount, OrderInfomation orderInfomation, DateInfomation dateInfomation) { // list 이름 고칠것 , 혜택내역 출력
-        int benefitPrice;
         System.out.println(OUT_BENEFIT.getMessage());
         if (!discount.checkMinOrderPrice(orderInfomation.getTotalPrice())) {
             System.out.println(NOTHING.getMessage());
             return;
         }
-        int dic = discount.calculateDayDiscount(dateInfomation);
-        if( dic != ZERO){
-            System.out.println(DDAY_DISCOUNT.getBenefit() + formatter.format(dic) + UNIT.getBenefit());
-        }
+        printDdayDiscount(discount.calculateDayDiscount(dateInfomation));
+        int dic;
+
         dic = discount.checkWeekendDay(dateInfomation, orderInfomation);
         if(dic != ZERO && dateInfomation.getIsWeekend()){
             System.out.println(WEEKEND_DISCOUNT.getBenefit() + formatter.format(dic) + UNIT.getBenefit());
@@ -61,6 +59,7 @@ public class OutputView {
         if(dic != ZERO && !dateInfomation.getIsWeekend()){
             System.out.println(NORMAL_DISCOUNT.getBenefit() + formatter.format(dic) + UNIT.getBenefit());
         }
+
         dic = discount.checkSpecialDay(dateInfomation);
         if(dic != ZERO){
             System.out.println(SPECIAL_DISCOUNT.getBenefit() + formatter.format(dic) + UNIT.getBenefit());
@@ -68,6 +67,11 @@ public class OutputView {
 
         if (discount.getHasPresent()) {
             System.out.println(OUT_PRESENT_DISCOUNT.getMessage());
+        }
+    }
+    private void printDdayDiscount(int benefitPrice){
+        if(benefitPrice != ZERO){
+            System.out.println(DDAY_DISCOUNT.getBenefit() + formatter.format(benefitPrice) + UNIT.getBenefit());
         }
     }
 
