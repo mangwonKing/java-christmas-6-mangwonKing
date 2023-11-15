@@ -17,7 +17,13 @@ public class ExceptionTest extends NsTest {
         });
     }
     // 메뉴가 중복은 아닌지
-
+    @Test
+    void 메뉴_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("3","해산물파스타-1,제로콜라-2,해산물파스타-1");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
     // 메뉴를 1개이상 시켰는지
 
     //총 주문 개수가 20개를 넘기지 않았는지
