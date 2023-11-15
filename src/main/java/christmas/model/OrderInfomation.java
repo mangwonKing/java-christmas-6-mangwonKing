@@ -7,10 +7,10 @@ import java.util.*;
 import static christmas.system.Benefit.*;
 
 public class OrderInfomation {
+    private final Map<String, Integer> order;
     private final String SPACE = " ";
     private final String UNIT = "개";
     private final int ZERO = 0;
-    private final Map<String, Integer> order;
     private int totalPrice = 0;
 
     public OrderInfomation(Map<String, Integer> order) {

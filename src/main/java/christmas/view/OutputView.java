@@ -42,7 +42,7 @@ public class OutputView {
 
     }
 
-    public void printDiscountDetails(Discount discount, OrderInfomation orderInfomation, DateInfomation dateInfomation) { // list 이름 고칠것 , 혜택내역 출력
+    public void printDiscountDetails(Discount discount, OrderInfomation orderInfomation, DateInfomation dateInfomation) {
         System.out.println(OUT_BENEFIT.getMessage());
         if (!discount.checkMinOrderPrice(orderInfomation.getTotalPrice())) {
             System.out.println(NOTHING.getMessage());
