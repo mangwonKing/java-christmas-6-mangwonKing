@@ -23,7 +23,7 @@ public class EventPlannerController {
         outputView.printBeforePrice(orderInfomation.calculateTotal());
         outputView.printHasPresent(discount.checkPresent(orderInfomation.getTotalPrice()));
 
-        outputView.printDiscountList(discount, orderInfomation, dateInfomation);
+        outputView.printDiscountDetails(discount, orderInfomation, dateInfomation);
         outputView.printTotalDiscount(discount);
         outputView.printAffterPrice(discount, orderInfomation);
         outputView.printBadge(discount.checkBadge());

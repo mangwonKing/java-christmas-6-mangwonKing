@@ -8,7 +8,6 @@ import java.text.DecimalFormat;
 
 import static christmas.system.BenefitMessage.*;
 import static christmas.system.Message.*;
-import static christmas.system.Benefit.*;
 
 public class OutputView {
     private final int ZERO = 0;
@@ -43,7 +42,7 @@ public class OutputView {
 
     }
 
-    public void printDiscountList(Discount discount, OrderInfomation orderInfomation, DateInfomation dateInfomation) { // list 이름 고칠것 , 혜택내역 출력
+    public void printDiscountDetails(Discount discount, OrderInfomation orderInfomation, DateInfomation dateInfomation) { // list 이름 고칠것 , 혜택내역 출력
         System.out.println(OUT_BENEFIT.getMessage());
         if (!discount.checkMinOrderPrice(orderInfomation.getTotalPrice())) {
             System.out.println(NOTHING.getMessage());
