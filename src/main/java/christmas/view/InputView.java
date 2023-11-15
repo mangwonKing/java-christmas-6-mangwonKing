@@ -20,7 +20,7 @@ public class InputView {
     private final int INDEX_TWO = 1;
     private final int ZERO = 0;
     private final int MAX_ORDER = 20;
-    private final String CATEGORU_CANT_ALONE = "음료";
+    private final String CATEGORY_CANT_ALONE = "음료";
     private final String SEPERATE_ORDER = "-";
     private final String SEPERATE_MENU = ",";
 
@@ -67,20 +67,21 @@ public class InputView {
         checkCategory(menuDetail);
     }
     private void checkCategory(Map<String, Integer> menuDetail) {
-        boolean categoryFlag = false;
         for (String menuName : menuDetail.keySet()) {
-            for (Menu menu : Menu.values()) { //****** 메서드 분리 리팩토링 필요 ****
-                if (menu.nameCheck(menuName)) {
-                    if (!menu.getCategory().equals(CATEGORU_CANT_ALONE)) {
-                        categoryFlag = true;
-                        break;
-                    }
-                }
+            if(findNotDrink(menuName)){
+                return;
             }
         }
-        if (!categoryFlag) {
-            throw new IllegalArgumentException();
+        throw new IllegalArgumentException();
+
+    }
+    private boolean findNotDrink(String menuName){
+        for (Menu menu : Menu.values()) {
+            if (menu.nameCheck(menuName) &&!menu.getCategory().equals(CATEGORY_CANT_ALONE) ) {
+                return true;
+            }
         }
+        return false;
     }
 
     private void checkTotal(Map<String, Integer> menuDetail) {
