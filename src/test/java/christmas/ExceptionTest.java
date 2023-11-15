@@ -41,7 +41,13 @@ public class ExceptionTest extends NsTest {
         });
     }
     //음료만 주문하지는 않았는지
-
+    @Test
+    void 메뉴_음료만_주문_테스트() {
+        assertSimpleTest(() -> {
+            runException("25","레드와인-3");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
     //1 이상 31 이하의 숫자가 아닌 다른 수가 입력되는 경우
     @Override
     protected void runMain() {
