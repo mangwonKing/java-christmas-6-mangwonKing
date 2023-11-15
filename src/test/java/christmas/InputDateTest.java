@@ -10,9 +10,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 public class InputDateTest {
     private DateInfomation dateInfomation;
-    private int weekendTestDay = 2;
-    private int normalTestDay = 4;
-    private int specialTestDay = 3;
+    private final int weekendTestDay = 2;
+    private final int normalTestDay = 4;
+    private final int specialTestDay = 3;
 
     @Test
     void 주말_확인(){
@@ -25,5 +25,11 @@ public class InputDateTest {
         dateInfomation = new DateInfomation(normalTestDay);
         boolean result = dateInfomation.getIsWeekend();
         assertThat(result).isEqualTo(false);
+    }
+    @Test
+    void 별표_확인(){
+        dateInfomation = new DateInfomation(specialTestDay);
+        boolean result = dateInfomation.getIsStar();
+        assertThat(result).isEqualTo(true);
     }
 }
