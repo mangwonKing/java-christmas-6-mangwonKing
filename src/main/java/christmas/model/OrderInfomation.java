@@ -22,15 +22,6 @@ public class OrderInfomation {
         }
     }
 
-    public List<Integer> getValue() {
-        List<Integer> list = new ArrayList<>(order.values());
-        return list;
-    }
-
-    public Set<String> getKey() {
-        return order.keySet();
-    }
-
     public String getCategory(String name) {
         Menu menu = Menu.findMenu(name);
         return menu.getCategory();

@@ -78,7 +78,6 @@ public class Discount {
         if (totalBenefit >= MIN_SANTA.getMinDiscount()) {
             badge = SANTA.getBadge();
         }
-
         return badge;
     }
 
