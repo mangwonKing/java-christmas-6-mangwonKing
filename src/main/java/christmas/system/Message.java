@@ -26,6 +26,6 @@ public enum Message {
     }
 
     public String getMessage(Object... args) {
-        return String.format(message,args);
+        return String.format(message, args);
     }
 }

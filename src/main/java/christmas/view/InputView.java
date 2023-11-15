@@ -51,14 +51,15 @@ public class InputView {
         while (true) {
             try {
                 String order = Console.readLine();
-                checkMenu(order,menuDetail);
+                checkMenu(order, menuDetail);
                 return menuDetail;
             } catch (IllegalArgumentException e) {
                 System.out.println(ORDER_ERROR.getErrorMessage());
             }
         }
     }
-    private void checkMenu(String order,Map<String,Integer> menuDetail){
+
+    private void checkMenu(String order, Map<String, Integer> menuDetail) {
         List<String> menus = Arrays.asList(order.split(SEPERATE_MENU));
         int size = menus.size();
         saveOrder(menus, menuDetail);
@@ -66,18 +67,20 @@ public class InputView {
         checkTotal(menuDetail);
         checkCategory(menuDetail);
     }
+
     private void checkCategory(Map<String, Integer> menuDetail) {
         for (String menuName : menuDetail.keySet()) {
-            if(findNotDrink(menuName)){
+            if (findNotDrink(menuName)) {
                 return;
             }
         }
         throw new IllegalArgumentException();
 
     }
-    private boolean findNotDrink(String menuName){
+
+    private boolean findNotDrink(String menuName) {
         for (Menu menu : Menu.values()) {
-            if (menu.nameCheck(menuName) &&!menu.getCategory().equals(CATEGORY_CANT_ALONE) ) {
+            if (menu.nameCheck(menuName) && !menu.getCategory().equals(CATEGORY_CANT_ALONE)) {
                 return true;
             }
         }

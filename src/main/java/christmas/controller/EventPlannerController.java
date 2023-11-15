@@ -15,10 +15,11 @@ public class EventPlannerController {
         outputView.printWelcom();
         DateInfomation dateInfomation = inputDate();
         OrderInfomation orderInfomation = inputOrder();
-        printResult(dateInfomation,orderInfomation);
+        printResult(dateInfomation, orderInfomation);
 
     }
-    private void printResult(DateInfomation dateInfomation, OrderInfomation orderInfomation){
+
+    private void printResult(DateInfomation dateInfomation, OrderInfomation orderInfomation) {
         outputView.printReserveMessage(dateInfomation.getDay());
         outputView.printOrder(orderInfomation);
         outputView.printBeforePrice(orderInfomation.calculateTotal());
@@ -28,14 +29,16 @@ public class EventPlannerController {
         outputView.printAffterPrice(discount, orderInfomation);
         outputView.printBadge(discount.checkBadge());
     }
-    private DateInfomation inputDate(){
+
+    private DateInfomation inputDate() {
         int date = inputView.readDate();
         DateInfomation dateInfomation = new DateInfomation(date);
         dateInfomation.checkDay();
         return dateInfomation;
 
     }
-    private OrderInfomation inputOrder(){
+
+    private OrderInfomation inputOrder() {
         OrderInfomation orderInfomation = new OrderInfomation(inputView.readMenu());
         return orderInfomation;
     }

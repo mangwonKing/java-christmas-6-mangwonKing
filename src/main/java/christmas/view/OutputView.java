@@ -53,26 +53,30 @@ public class OutputView {
         printSpecialDiscount(discount.checkSpecialDay(dateInfomation));
         printPresentDiscount(discount.getHasPresent());
     }
-    private void printPresentDiscount(boolean hasPresent){
-        if(hasPresent){
+
+    private void printPresentDiscount(boolean hasPresent) {
+        if (hasPresent) {
             System.out.println(OUT_PRESENT_DISCOUNT.getMessage());
         }
     }
-    private void printSpecialDiscount(int benefitPrice){
-        if(benefitPrice != ZERO){
+
+    private void printSpecialDiscount(int benefitPrice) {
+        if (benefitPrice != ZERO) {
             System.out.println(SPECIAL_DISCOUNT.getBenefit() + formatter.format(benefitPrice) + UNIT.getBenefit());
         }
     }
-    private void printWeekendDiscount(int benefitPrice,boolean isWeekend){
-        if(benefitPrice != ZERO && isWeekend){
+
+    private void printWeekendDiscount(int benefitPrice, boolean isWeekend) {
+        if (benefitPrice != ZERO && isWeekend) {
             System.out.println(WEEKEND_DISCOUNT.getBenefit() + formatter.format(benefitPrice) + UNIT.getBenefit());
         }
-        if (benefitPrice != ZERO && !isWeekend){
+        if (benefitPrice != ZERO && !isWeekend) {
             System.out.println(NORMAL_DISCOUNT.getBenefit() + formatter.format(benefitPrice) + UNIT.getBenefit());
         }
     }
-    private void printDdayDiscount(int benefitPrice){
-        if(benefitPrice != ZERO){
+
+    private void printDdayDiscount(int benefitPrice) {
+        if (benefitPrice != ZERO) {
             System.out.println(DDAY_DISCOUNT.getBenefit() + formatter.format(benefitPrice) + UNIT.getBenefit());
         }
     }
