@@ -8,11 +8,11 @@ import christmas.model.DateInfomation;
 import christmas.model.Discount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-public class CalculateDiscountTest {
-
+public class CalculateDiscountTest  extends NsTest{
+    private final int testDate = 10;
     private Discount discount;
     private DateInfomation dateInfomation;
-    private final int testDate = 10;
+
     @BeforeEach
     void setUp(){
         discount = new Discount();
@@ -34,4 +34,15 @@ public class CalculateDiscountTest {
         assertThat(result).isEqualTo(1000);
     }
 
+    @Test
+    void 주말_할인_계산(){
+        assertSimpleTest(() -> {
+            run("1", "티본스테이크-1,제로콜라-3");
+            assertThat(output()).contains("주말 할인: -2,023원");
+        });
+    }
+    @Override
+    protected void runMain() {
+        Application.main(new String[]{});
+    }
 }
