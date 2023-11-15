@@ -35,6 +35,13 @@ public class BenefitTest extends NsTest{
             assertThat(output()).contains("<총혜택 금액>" + LINE_SEPARATOR + "-32,569원");
         });
     }
+    @Test
+    void 최종_결제금액_계산(){
+        assertSimpleTest(() -> {
+            run("25", "티본스테이크-1,제로콜라-3");
+            assertThat(output()).contains("<할인 후 예상 결제 금액>" + LINE_SEPARATOR + "59,600원");
+        });
+    }
     @Override
     protected void runMain() {
         Application.main(new String[]{});
