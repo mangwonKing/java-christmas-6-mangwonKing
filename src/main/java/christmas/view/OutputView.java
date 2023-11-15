@@ -51,14 +51,7 @@ public class OutputView {
         }
         printDdayDiscount(discount.calculateDayDiscount(dateInfomation));
         int dic;
-
-        dic = discount.checkWeekendDay(dateInfomation, orderInfomation);
-        if(dic != ZERO && dateInfomation.getIsWeekend()){
-            System.out.println(WEEKEND_DISCOUNT.getBenefit() + formatter.format(dic) + UNIT.getBenefit());
-        }
-        if(dic != ZERO && !dateInfomation.getIsWeekend()){
-            System.out.println(NORMAL_DISCOUNT.getBenefit() + formatter.format(dic) + UNIT.getBenefit());
-        }
+        printWeekendDiscount(discount.checkWeekendDay(dateInfomation, orderInfomation), dateInfomation.getIsWeekend());
 
         dic = discount.checkSpecialDay(dateInfomation);
         if(dic != ZERO){
@@ -67,6 +60,14 @@ public class OutputView {
 
         if (discount.getHasPresent()) {
             System.out.println(OUT_PRESENT_DISCOUNT.getMessage());
+        }
+    }
+    private void printWeekendDiscount(int benefitPrice,boolean isWeekend){
+        if(benefitPrice != ZERO && isWeekend){
+            System.out.println(WEEKEND_DISCOUNT.getBenefit() + formatter.format(benefitPrice) + UNIT.getBenefit());
+        }
+        if (benefitPrice != ZERO && !isWeekend){
+            System.out.println(NORMAL_DISCOUNT.getBenefit() + formatter.format(benefitPrice) + UNIT.getBenefit());
         }
     }
     private void printDdayDiscount(int benefitPrice){
